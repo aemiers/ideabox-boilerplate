@@ -5,32 +5,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./styles.css">
   </head>
-  <section class="nav-section">
-    <nav>
-      <h1>IdeaBox</h1>
-      <h2>Filter Starred Ideas</h2>
-      <!-- reassess h2 ? -->
-      <button>Show Starred Ideas</button>
-    </nav>
-  </section>
-  <main>
-  <body>
-    <section class="right-half-section">
-      <form>
-        <input type="text" name="title" id="title-input">
-        <label for="title">Title</label>
-        <input type="text" name="body" id="body-input">
-        <label for="body">Body</label>
-        <button class="save-button">Save</button>
-        <button class="searchButton"></button>
-        <input type="text" class="search-input" placeholder="Search Ideas">
-      </form>
+    <body class="wrapper">
+      <section class="nav-bar">
+        <nav>
+          <h1>IdeaBox</h1>
+          <h2>Filter Starred Ideas</h2>
+          <!-- reassess h2 ? -->
+          <button class="starred-ideas-button">Show Starred Ideas</button>
+        </nav>
+      </section>
+      <section class="input-form">
+        <form>
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title-input">
+          <label for="body">Body</label>
+          <input type="text" name="body" id="body-input">
+          <button class="save-button">Save</button>
+          <button class="searchButton"></button>
+          <input type="text" class="search-input" placeholder="Search Ideas">
+        </form>
+      </section>
       <section class="idea-cards">
         <article class="idea-card-grid"></article>
       </section>
-    </section>
-    <script src="./src/main.js"></script>
   </body>
-  </main>
-
+  <script src="./src/main.js"></script>
 </html>
+
+<!-- might want to fix spacing of wrapper section -->

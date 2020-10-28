@@ -4,12 +4,50 @@ html {
 }
 
 body {
-  height: 100%;
-  width: 100%;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: pink;
 }
 
-.nav-section {
+.wrapper {
+  height: 100%;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(4, [col] 250px);
+  grid-template-rows: repeat(2, [row] auto);
+}
+
+.nav-bar {
+  height: 100%;
   background-color: #1F1F3D;
+  grid-column: col 1 / span 1;
+  grid-row: row / span 2;
+/* why are there light grey text above */
+}
+
+.input-form {
+  grid-column: col 2 / span 3;
+  grid-row: row;
+  background-color: #A9AAD2;
+  color: #1F1F3D;
+}
+
+.idea-cards {
+  grid-column: col 2 / span 3;
+  grid-row: row 2;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  background-color: #EAEAF4;
+  height: 500px;
+  width: 300px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1 {
@@ -20,17 +58,13 @@ h2 {
   color: #BFBFDD;
 }
 
-button {
+.search-button {
   background-color: #353567;
   color: #E9E9F3;
   border: none;
 }
-.form {
-  background-color: #A9AAD2;
-  color: #1F1F3D;
-}
 
-.idea-cards {
-  background-color: #EAEAF4;
+.starred-ideas-button {
+
 }
-/* left off trying to get nav to align in a column */
+/* working on buttons, downloading images, nav bar sizing */
