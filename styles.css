@@ -1,0 +1,36 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.nav-section {
+  background-color: #1F1F3D;
+}
+
+h1 {
+  color: #E9E9F3;
+}
+
+h2 {
+  color: #BFBFDD;
+}
+
+button {
+  background-color: #353567;
+  color: #E9E9F3;
+  border: none;
+}
+.form {
+  background-color: #A9AAD2;
+  color: #1F1F3D;
+}
+
+.idea-cards {
+  background-color: #EAEAF4;
+}
+/* left off trying to get nav to align in a column */
