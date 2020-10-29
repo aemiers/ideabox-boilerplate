@@ -11,6 +11,7 @@ var searchButton = document.querySelector(".search-button");
 var titleInput = document.querySelector("#title-input");
 
 var allSavedIdeas = [];
+var allFavoriteIdeas = []
 var newIdea;
 
 saveButton.addEventListener("click", saveIdea);
@@ -18,25 +19,35 @@ searchButton.addEventListener("click", findSavedIdea);
 favoriteButton.addEventListener("click", favoriteIdea);
 
 function saveIdea(title, body) {
+  debugger
+  event.preventDefault();
   title = titleInput.value;
   body = bodyInput.value;
 
   newIdea = new Idea(title, body);
-
-  allSavedIdeas.push(title, body);
+  allSavedIdeas.push(newIdea);
 
   if (allSavedIdeas.includes(newIdea) === false) allSavedIdeas.push(newIdea);
+  console.log(allSavedIdeas);
 }
 
 
-function findSavedIdea() {
+function findSavedIdea(searchInput) {
 
 }
 
 function favoriteIdea () {
-
+  var clickedIdea = event.target.closest(".favorite-button")
+  if (allFavoriteIdeas.includes(clickedIdea) === false) allFavoriteIdeas.push(clickedIdea);
 }
 
 function deleteIdea() {
-
-}
+  if (event.target.closest(".card-body")) {
+      var selectedIdea = event.target.closest(".card-body")
+      for (var i = 0; i < allSavedIdeas.length; i++) {
+        if (allSavedIdeas[i].id === Number(selectedIdea.id)) {
+          allSavedIdeas.splice(i, 1);
+        }
+      };
+    };
+  };
