@@ -19,8 +19,7 @@ searchButton.addEventListener("click", findSavedIdea);
 favoriteButton.addEventListener("click", favoriteIdea);
 
 function saveIdea(title, body) {
-  debugger
-  event.preventDefault();
+  event.preventDefault(event);
   title = titleInput.value;
   body = bodyInput.value;
 
