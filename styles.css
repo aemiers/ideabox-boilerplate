@@ -1,5 +1,6 @@
 * {
-  font-family: "Open Sans", bold;
+  font-family: "Open Sans";
+  font-weight: bold;
 }
 
 html {
@@ -25,6 +26,11 @@ html {
 
 nav {
   margin-left: 15px;
+}
+
+hr.solid {
+  border: 1px solid #353567;
+  margin-left: -15px;
 }
 
 .input-form {
@@ -107,6 +113,7 @@ h2 {
   width: 90%;
   border: 8px bold;
   margin-bottom: 20px;
+  font-weight: normal;
 }
 
 .starred-ideas-button {
@@ -114,6 +121,7 @@ h2 {
   color: #E9E9F3;
   border: 1px solid #353567;
   margin-top: 20px;
+  margin-bottom: 18px;
   margin-left: 10px;
   font-size: 17px;
   font-weight: bold;
@@ -133,23 +141,10 @@ h2 {
 }
 
 .idea-card-grid {
-  /* display: grid;
-  grid-column: col 2 / span 3;
-		grid-row: row 2;
-		display: grid;
-    grid-gap: 10px;
-		grid-template-columns: 1fr 1fr 1fr;
-  font-family: 'Open Sans', sans-serif; */
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-/*   grid-column: col 2 / span 3;
-	grid-row: row 2 / span 3; */
   grid-gap: 15px;
-/* 		grid-template-columns: 1fr 1fr 1fr; */
   padding: 20px;
-  font-family: 'Open Sans', sans-serif;
-
 }
 
 .idea-card {
@@ -165,6 +160,27 @@ h2 {
   justify-content: space-between;
 }
 
+.star-inactive,
+.star-active {
+  height: 17px;
+  margin: 5px, 5px, 5px, 5px;
+}
+
+.favorite-button {
+  background-color: #1F1F3D;
+  border: none;
+}
+
+.delete {
+  height: 17px;
+  margin: 5px, 5px, 5px, 5px;
+}
+
+.delete-button {
+  background-color: #1F1F3D;
+  border: none;
+}
+
 .text-area {
   padding: 0 2px 0 3px;
   font-size: 10pt;
@@ -174,10 +190,23 @@ h2 {
   background-color: #5356a4;
   color: #ffffff;
   font-size: 9pt;
-  font-weight: bold;
   width: 160px;
 }
 
-.card-title {
-  font-weight: bold;
+.comment {
+  height: 17px;
+  margin: 5px, 5px, 5px, 5px;
+}
+
+.comment-button {
+  background-color: #5356a4;
+  border: none;
+}
+
+.card-body {
+  font-weight: normal;
+}
+
+.hidden {
+  display: none!important;
 }
