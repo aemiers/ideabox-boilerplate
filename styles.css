@@ -1,16 +1,15 @@
+* {
+  font-family: "Open Sans", bold;
+}
+
 html {
   height: 100%;
   width: 100%;
 }
 
-body {
+.wrapper {
   min-height: 100vh;
   width: 100vw;
-  background-color: pink;
-}
-
-.wrapper {
-  height: 100%;
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(4, [col] 250px);
@@ -22,49 +21,163 @@ body {
   background-color: #1F1F3D;
   grid-column: col 1 / span 1;
   grid-row: row / span 2;
-/* why are there light grey text above */
+}
+
+nav {
+  margin-left: 15px;
 }
 
 .input-form {
-  grid-column: col 2 / span 3;
-  grid-row: row;
+  width: 100vw;
   background-color: #A9AAD2;
   color: #1F1F3D;
-}
-
-.idea-cards {
-  grid-column: col 2 / span 3;
-  grid-row: row 2;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 1fr;
-  background-color: #EAEAF4;
-  height: 500px;
-  width: 300px;
+  display: flex;
+  justify-content: center;
 }
 
 form {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
+  width: 35%;
+  border: 6px;
+  border-color: #5356A4;
+  margin-left: -250px;
+}
+
+.title-text {
+  margin-top: 10%;
+}
+
+#title-input {
+  height: 37px;
+}
+
+.body-text {
+  margin-top: 10%;
+}
+
+#body-input {
+  height: 72px;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+}
+
+h1, h2 {
 }
 
 h1 {
   color: #E9E9F3;
+  font-size: 20px;
 }
 
 h2 {
   color: #BFBFDD;
+  font-size: 14px;
+}
+
+.save-button {
+  margin: 6% 0 6% 0;
+  background-color: #353567;
+  color: #EAEAF4;
+  border: 6px;
+  height: 30px;
 }
 
 .search-button {
   background-color: #353567;
   color: #E9E9F3;
   border: none;
+  margin: 0 0 10px 0;
+  width: 36px;
+  height: 36px;
+
+}
+
+.search-icon {
+  height: 17px;
+  margin: 5px, 5px, 5px, 5px;
+}
+
+.search-input {
+  height: 30px;
+  width: 90%;
+  border: 8px bold;
+  margin-bottom: 20px;
 }
 
 .starred-ideas-button {
+  background-color: #5356A4;
+  color: #E9E9F3;
+  border: 1px solid #353567;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 8px 18px 8px 18px;
+}
+
+/* Idea cards */
+.idea-cards-section {
+  grid-column: col 2 / span 3;
+  grid-row: row 2;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  background-color: #EAEAF4;
+  width: 100vw;
+  height: 100vh;
+}
+
+.idea-card-grid {
+  /* display: grid;
+  grid-column: col 2 / span 3;
+		grid-row: row 2;
+		display: grid;
+    grid-gap: 10px;
+		grid-template-columns: 1fr 1fr 1fr;
+  font-family: 'Open Sans', sans-serif; */
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+/*   grid-column: col 2 / span 3;
+	grid-row: row 2 / span 3; */
+  grid-gap: 15px;
+/* 		grid-template-columns: 1fr 1fr 1fr; */
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif;
 
 }
-/* working on buttons, downloading images, nav bar sizing */
+
+.idea-card {
+    border: 2px solid #1F1F3D;
+    background-color: #ffffff;
+    height: 170px;
+    width: 160px;
+}
+
+.card-top {
+  background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-area {
+  padding: 0 2px 0 3px;
+  font-size: 10pt;
+}
+
+.card-bottom {
+  background-color: #5356a4;
+  color: #ffffff;
+  font-size: 9pt;
+  font-weight: bold;
+  width: 160px;
+}
+
+.card-title {
+  font-weight: bold;
+}

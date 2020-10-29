@@ -16,17 +16,50 @@
       </section>
       <section class="input-form">
         <form>
-          <label for="title">Title</label>
+          <label class="title-text" for="title">Title</label>
           <input type="text" name="title" id="title-input">
-          <label for="body">Body</label>
+          <label class="body-text" for="body">Body</label>
           <input type="text" name="body" id="body-input">
           <button class="save-button">Save</button>
-          <button class="searchButton"></button>
-          <input type="text" class="search-input" placeholder="Search Ideas">
+          <div class="search">
+            <button class="search-button"><img src="images/search.svg" alt="Search button icon" class="search-icon"></button>
+            <input type="text" class="search-input" placeholder="Search Ideas">
+          </div>
         </form>
       </section>
-      <section class="idea-cards">
-        <article class="idea-card-grid"></article>
+      <section class="idea-cards-section">
+        <article class="idea-card-grid">
+          <!-- THIS WILL GO IN JS EVENTUALLY -->
+          <section class="idea-card">
+            <header class="card-top">
+              <button class="favorite-button">*</button>
+              <button class="delete-button">x</button>
+            </header>
+            <div class="text-area">
+              <p class="card-title">Idea Title</p>
+            <p class="card-body">Idea body. Don't ever play yourself. Every change I get, I water the plants, Lion! Cloth talk.</p>
+              </div>
+            <footer class="card-bottom">
+              <button class="comment-button">+</button>
+              <label>Comment</label>
+            </footer>
+          </section>
+          <section class="idea-card">
+            <header class="card-top">
+              <button class="favorite-button">*</button>
+              <button class="delete-button">x</button>
+            </header>
+            <div class="text-area">
+              <p class="card-title">Idea Title</p>
+            <p class="card-body">Idea body. Don't ever play yourself. Every change I get, I water the plants, Lion! Cloth talk.</p>
+              </div>
+            <footer class="card-bottom">
+              <button class="comment-button">+</button>
+              <label>Comment</label>
+            </footer>
+          </section>
+          <!-- THIS WILL GO IN JS EVENTUALLY -->
+        </article>
       </section>
   </body>
   <script src="./src/main.js"></script>
