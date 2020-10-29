@@ -19,21 +19,21 @@ searchButton.addEventListener("click", findSavedIdea);
 favoriteButton.addEventListener("click", favoriteIdea);
 
 function saveIdea(title, body) {
+  debugger
+  event.preventDefault();
   title = titleInput.value;
   body = bodyInput.value;
 
   newIdea = new Idea(title, body);
-
-  allSavedIdeas.push(title, body);
+  allSavedIdeas.push(newIdea);
 
   if (allSavedIdeas.includes(newIdea) === false) allSavedIdeas.push(newIdea);
-
   console.log(allSavedIdeas);
 }
 
 
 function findSavedIdea(searchInput) {
-searchImnt
+
 }
 
 function favoriteIdea () {
