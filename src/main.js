@@ -14,6 +14,8 @@ var allSavedIdeas = [];
 var allFavoriteIdeas = [];
 
 saveButton.addEventListener("click", saveIdea);
+bodyInput.addEventListener('keyup', disableSaveButton);
+titleInput.addEventListener('keyup', disableSaveButton);
 window.addEventListener("load", createNewCard);
 //searchButton.addEventListener("click", findSavedIdea);
 // favoriteButton.addEventListener("click", favoriteIdea);
@@ -42,8 +44,15 @@ function saveIdea(title, body) {
   // error handling, can't save an idea that's already there. look at clearing the form wonce we click save. if the user creates a second one, it's probably intentional
 }
 
+
+
+///
 function createNewCard() {
+  //rename function function to displayUserCards()
+  //create a new function "getStoredIdeas"
   allSavedIdeas = JSON.parse(localStorage.getItem("saved ideas"));
+  //
+  // if (allSavedIdeas.length)
   ideaCardGrid.innerHTML = "";
   for (var i = 0; i < allSavedIdeas.length; i++) {
     console.log(allSavedIdeas[i])
@@ -74,8 +83,8 @@ function clearInputFields() {
 }
 
 
-function disableSaveButton() {
-  if (titleInput.value == "" || bodyInput.value == "") {
+function disableSaveButton(event) {
+  if (titleInput.value === '' || bodyInput.value === '') {
     saveButton.disabled = true;
   } else {
     saveButton.disabled = false;
