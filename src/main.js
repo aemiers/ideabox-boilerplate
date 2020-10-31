@@ -19,6 +19,8 @@ titleInput.addEventListener('keyup', disableSaveButton);
 window.addEventListener("load", createNewCard);
 //searchButton.addEventListener("click", findSavedIdea);
 // favoriteButton.addEventListener("click", favoriteIdea);
+ideaCardGrid.addEventListener("click", favoriteCard);
+
 
 function saveIdea(title, body) {
   event.preventDefault(event);
@@ -58,9 +60,8 @@ function createNewCard() {
     console.log(allSavedIdeas[i])
     ideaCardGrid.innerHTML += `<section class="idea-card">
           <header class="card-top">
-            <button class="favorite-button">
+            <button class="favorite-button" id="${allSavedIdeas[i].id}">
               <img src="images/star.svg" alt="Star button icon" class="star-inactive">
-              <img src="images/star-active.svg" alt="Active star button icon" class="star-active hidden">
             </button>
             <button class="delete-button"><img src="images/delete.svg" alt="Delete button icon" class="delete"></button>
           </header>
@@ -88,5 +89,18 @@ function disableSaveButton(event) {
     saveButton.disabled = true;
   } else {
     saveButton.disabled = false;
+  }
+}
+
+
+function favoriteCard(event) {
+  for(var i =0; i < allSavedIdeas.length; i++) {
+    if(event.target.parentElement.id === `${allSavedIdeas[i].id}`) {
+      allFavoriteIdeas.push(`${allSavedIdeas[i]}`);
+      console.log(allFavoriteIdeas);
+      event.target.parentElement.innerHTML = `
+      <img src="images/star-active.svg" alt="Active star button icon" class="star-active">
+      `
+    }
   }
 }
