@@ -1,5 +1,3 @@
-
-
 var bodyInput = document.querySelector("#body-input");
 var cardBody = document.querySelector(".card-body")
 var cardTitle = document.querySelector(".card-title");
@@ -16,7 +14,12 @@ var allFavoriteIdeas = [];
 saveButton.addEventListener("click", saveIdea);
 bodyInput.addEventListener('keyup', disableSaveButton);
 titleInput.addEventListener('keyup', disableSaveButton);
-window.addEventListener("load", createNewCard);
+window.addEventListener("load", function(){
+  if (localStorage.length === 0){
+    return
+  }
+  createNewCard();
+});
 //searchButton.addEventListener("click", findSavedIdea);
 // favoriteButton.addEventListener("click", favoriteIdea);
 ideaCardGrid.addEventListener("click", favoriteCard);
@@ -33,34 +36,24 @@ function saveIdea(title, body) {
   var newIdea = new Idea(title, body);
   allSavedIdeas.push(newIdea);
 
-  // localStorage.setItem("saved ideas", JSON.stringify(allSavedIdeas));
+  localStorage.setItem("saved-ideas", JSON.stringify(allSavedIdeas));
 
   createNewCard();
 
   clearInputFields();
-
-
-
-  // if (allSavedIdeas.includes(newIdea) === false) allSavedIdeas.push(newIdea);
-  // replace this with a for loops
-  // error handling, can't save an idea that's already there. look at clearing the form wonce we click save. if the user creates a second one, it's probably intentional
 }
 
 function createNewCard() {
-  //rename function function to displayUserCards()
-  //create a new function "getStoredIdeas"
-  // allSavedIdeas = JSON.parse(localStorage.getItem("saved ideas"));
-  //
-  // if (allSavedIdeas.length)
+  allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"));
   ideaCardGrid.innerHTML = "";
   for (var i = 0; i < allSavedIdeas.length; i++) {
     console.log(allSavedIdeas[i])
-    ideaCardGrid.innerHTML += `<section class="idea-card">
+    ideaCardGrid.innerHTML += `<section class="idea-card" id="${allSavedIdeas[i].id}">
           <header class="card-top">
-            <button class="favorite-button" id="${allSavedIdeas[i].id}">
+            <button class="favorite-button" >
               <img src="images/star.svg" alt="Star button icon" class="star-inactive">
             </button>
-            <button class="delete-button"><img src="images/delete.svg" alt="Delete button icon" class="delete" id="${allSavedIdeas[i].id}"></button>
+            <button class="delete-button"><img src="images/delete.svg" alt="Delete button icon" class="delete"></button>
           </header>
           <div class="text-area">
             <p class="card-title">${allSavedIdeas[i].title}</p>
@@ -80,7 +73,6 @@ function clearInputFields() {
   bodyInput.value = "";
 }
 
-
 function disableSaveButton(event) {
   if (titleInput.value === '' || bodyInput.value === '') {
     saveButton.disabled = true;
@@ -91,37 +83,66 @@ function disableSaveButton(event) {
 
 
 function favoriteCard(event) {
-  for(var i =0; i < allSavedIdeas.length; i++) {
-    if(event.target.parentElement.id === `${allSavedIdeas[i].id}`) {
+  // debugger
+  card = event.target.closest('section');
+  image = card.querySelector('.star-inactive');
+  if (image === null) {
+    unfavoriteCard(event)
+    return
+  }
+  console.log(card.id);
+  for(var i = 0; i < allSavedIdeas.length; i++) {
+    if(card.id === `${allSavedIdeas[i].id}`) {
       allFavoriteIdeas.push(`${allSavedIdeas[i]}`);
       console.log(allFavoriteIdeas);
-      event.target.parentElement.innerHTML = `
-      <img src="images/star-active.svg" alt="Active star button icon" class="star-active">
-      `
+      image.src = "images/star-active.svg"
     }
+    image.classList.remove("star-inactive");
+    image.classList.add("star-active");
   }
 }
 
-ideaCardGrid.addEventListener("click", deleteIdea);
+function unfavoriteCard(event) {
+  card = event.target.closest('section');
+  image = card.querySelector('.star-active');
+  console.log(card.id);
+  for(var i = 0; i < allSavedIdeas.length; i++) {
+    if(card.id === `${allSavedIdeas[i].id}`) {
+      allFavoriteIdeas.splice(i, 1);
+      console.log(allFavoriteIdeas);
+      image.src = "images/star.svg"
+    }
+    image.classList.add("star-inactive");
+    image.classList.remove("star-active");
+  }
+}
+//add !== for not the same favorite card
+
+
+
+//function with conditional that decides if we're favoriting or unfavoriting calls specific one
+
+
+// ideaCardGrid.addEventListener("click", deleteIdea);
 
 //need to set delete button to the id of the class
 
-function deleteIdea(event) {
-    if (event.target.classList.contains('delete-button')) {
-    event.target.parentElement.parentElement.remove();
-   }
-  removeHtml(event);
-  // removeLocalStorage();
-}
-
-function removeHtml(event) {
-  for (var i = 0; i < allSavedIdeas.length; i++) {
-    debugger;
-    if(event.target.parentElement.parentElement.parentElement.id === `${allSavedIdeas[i].id}`) {
-      allSavedIdeas[i].splice(i, 1);
-    }
-  }
-};
+// function deleteIdea(event) {
+//     if (event.target.classList.contains('delete-button')) {
+//     event.target.parentElement.parentElement.remove();
+//    }
+//   removeHtml(event);
+//   // removeLocalStorage();
+// }
+//
+// function removeHtml(event) {
+//   for (var i = 0; i < allSavedIdeas.length; i++) {
+//     debugger;
+//     if(event.target.parentElement.parentElement.parentElement.id === `${allSavedIdeas[i].id}`) {
+//       allSavedIdeas.splice(i, 1);
+//     }
+//   }
+// };
 //might want to bind when we create the card to the unique id
 
 // removeLocalStorage() {
