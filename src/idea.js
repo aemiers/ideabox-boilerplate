@@ -6,17 +6,17 @@ class Idea {
   this.star = false;
   }
 
-  // function saveToStorage() {
+  saveToStorage() {
+    localStorage.setItem("saved-ideas", JSON.stringify(allSavedIdeas));
+  }
+  //
+  //deleteFromStorage() {
+  //
   //
   // }
   //
-  // function deleteFromStorage() {
-  //
-  //
-  // }
-  //
-  // function updateIdea() {
-  //
-  // }
-  //
+  updateIdea() {
+    this.star = !this.star;
+  }
+
 }

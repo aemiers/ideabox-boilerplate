@@ -36,7 +36,9 @@ function saveIdea(title, body) {
   var newIdea = new Idea(title, body);
   allSavedIdeas.push(newIdea);
 
-  localStorage.setItem("saved-ideas", JSON.stringify(allSavedIdeas));
+  newIdea.saveToStorage()
+  // localStorage.setItem("saved-ideas", JSON.stringify(allSavedIdeas));
+  // newIdea.updateIdea();
 
   createNewCard();
 
@@ -44,14 +46,13 @@ function saveIdea(title, body) {
 }
 
 function createNewCard() {
-  allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"));
+  retrieveFromStorage();
   ideaCardGrid.innerHTML = "";
   for (var i = 0; i < allSavedIdeas.length; i++) {
-    console.log(allSavedIdeas[i])
     ideaCardGrid.innerHTML += `<section class="idea-card" id="${allSavedIdeas[i].id}">
           <header class="card-top">
-            <button class="favorite-button" >
-              <img src="images/star.svg" alt="Star button icon" class="star-inactive">
+            <button class="favorite-button">
+              <img src="images/star.svg" alt="Star button icon" class="star-inactive star">
             </button>
             <button class="delete-button"><img src="images/delete.svg" alt="Delete button icon" class="delete"></button>
           </header>
@@ -68,6 +69,11 @@ function createNewCard() {
   }
 }
 
+function retrieveFromStorage() {
+  allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"));
+  //iterate through, in for loop instantiate new instance (set as global variable)
+}
+
 function clearInputFields() {
   titleInput.value = "";
   bodyInput.value = "";
@@ -81,50 +87,66 @@ function disableSaveButton(event) {
   }
 }
 
-
 function favoriteCard(event) {
-  // debugger
   card = event.target.closest('section');
-  image = card.querySelector('.star-inactive');
+  image = event.target.closest('.star-inactive');
   if (image === null) {
     unfavoriteCard(event)
     return
   }
-  console.log(card.id);
   for(var i = 0; i < allSavedIdeas.length; i++) {
     if(card.id === `${allSavedIdeas[i].id}`) {
+      // favoriteIdea(allSavedIdeas[i]);
+      //trying to update the star property in the class
       allFavoriteIdeas.push(`${allSavedIdeas[i]}`);
-      console.log(allFavoriteIdeas);
       image.src = "images/star-active.svg"
     }
     image.classList.remove("star-inactive");
     image.classList.add("star-active");
   }
 }
+// refactoring in future: same class name on both images, toggle between.
+//if image.className === .star-inactive
+// favorite it
+//else unfavoriteCard
+
 
 function unfavoriteCard(event) {
   card = event.target.closest('section');
-  image = card.querySelector('.star-active');
-  console.log(card.id);
+  image = event.target.closest('.star-active');
+  // image = card.querySelector('.star-active');
   for(var i = 0; i < allSavedIdeas.length; i++) {
     if(card.id === `${allSavedIdeas[i].id}`) {
       allFavoriteIdeas.splice(i, 1);
-      console.log(allFavoriteIdeas);
       image.src = "images/star.svg"
     }
     image.classList.add("star-inactive");
     image.classList.remove("star-active");
   }
 }
-//add !== for not the same favorite card
+
+// function favoriteIdea(idea) {
+//   idea.updateIdea();
+//   console.log(idea);
+//   //to access updateIdea method in class use dot/bracket notation on allSavedIdeas array to access specific instance to call the method on.
+// 
+// }
 
 
-
-//function with conditional that decides if we're favoriting or unfavoriting calls specific one
 
 
 // ideaCardGrid.addEventListener("click", deleteIdea);
-
+// //Annie's idea:
+// function deleteIdea(event) {
+//   card = event.target.closest('section');
+//   for (var i = 0; i < allSavedIdeas.length; i++) {
+//     if(card.id === `${allSavedIdeas[i].id}`) {
+//       allSavedIdeas.splice(i, 1);
+//     }
+//   }
+//   //then needs to update html to remove card from view
+//   //and remove the card from localStorage
+// }
 //need to set delete button to the id of the class
 
 // function deleteIdea(event) {
@@ -137,7 +159,6 @@ function unfavoriteCard(event) {
 //
 // function removeHtml(event) {
 //   for (var i = 0; i < allSavedIdeas.length; i++) {
-//     debugger;
 //     if(event.target.parentElement.parentElement.parentElement.id === `${allSavedIdeas[i].id}`) {
 //       allSavedIdeas.splice(i, 1);
 //     }
