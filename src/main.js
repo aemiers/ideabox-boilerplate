@@ -7,6 +7,8 @@ var ideaCardGrid = document.querySelector(".idea-card-grid");
 var saveButton = document.querySelector(".save-button");
 var searchButton = document.querySelector(".search-button");
 var titleInput = document.querySelector("#title-input");
+var searchInput = document.querySelector('.search-input');
+var showStarredIdeasButton = document.querySelector('.starred-ideas-button')
 
 var allSavedIdeas = [];
 var allFavoriteIdeas = [];
@@ -22,26 +24,21 @@ window.addEventListener("load", function(){
 });
 //searchButton.addEventListener("click", findSavedIdea);
 // favoriteButton.addEventListener("click", favoriteIdea);
-ideaCardGrid.addEventListener("click", favoriteCard);
+ideaCardGrid.addEventListener("click", manipulateCard);
+searchButton.addEventListener('click', searchBarSearch);
+searchInput.addEventListener('keyup', searchBarSearch);
+showStarredIdeasButton.addEventListener('click', showStarredIdeas);
 
 
 function saveIdea(title, body) {
   event.preventDefault(event);
-
   disableSaveButton();
-
-  title = titleInput.value;
-  body = bodyInput.value;
-
+  var title = titleInput.value;
+  var body = bodyInput.value;
   var newIdea = new Idea(title, body);
   allSavedIdeas.push(newIdea);
-
   newIdea.saveToStorage()
-  // localStorage.setItem("saved-ideas", JSON.stringify(allSavedIdeas));
-  // newIdea.updateIdea();
-
   createNewCard();
-
   clearInputFields();
 }
 
@@ -71,7 +68,6 @@ function createNewCard() {
 
 function retrieveFromStorage() {
   allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"));
-  //iterate through, in for loop instantiate new instance (set as global variable)
 }
 
 function clearInputFields() {
@@ -87,6 +83,15 @@ function disableSaveButton(event) {
   }
 }
 
+
+function manipulateCard(event) {
+  if(event.target.closest('.star-inactive') || event.target.closest('.star-active')) {
+    favoriteCard(event);
+  } else if(event.target.closest('.delete')) {
+    deleteCard(event);
+  }
+}
+
 function favoriteCard(event) {
   card = event.target.closest('section');
   image = event.target.closest('.star-inactive');
@@ -96,8 +101,6 @@ function favoriteCard(event) {
   }
   for(var i = 0; i < allSavedIdeas.length; i++) {
     if(card.id === `${allSavedIdeas[i].id}`) {
-      // favoriteIdea(allSavedIdeas[i]);
-      //trying to update the star property in the class
       allFavoriteIdeas.push(`${allSavedIdeas[i]}`);
       image.src = "images/star-active.svg"
     }
@@ -105,16 +108,10 @@ function favoriteCard(event) {
     image.classList.add("star-active");
   }
 }
-// refactoring in future: same class name on both images, toggle between.
-//if image.className === .star-inactive
-// favorite it
-//else unfavoriteCard
-
 
 function unfavoriteCard(event) {
   card = event.target.closest('section');
   image = event.target.closest('.star-active');
-  // image = card.querySelector('.star-active');
   for(var i = 0; i < allSavedIdeas.length; i++) {
     if(card.id === `${allSavedIdeas[i].id}`) {
       allFavoriteIdeas.splice(i, 1);
@@ -125,47 +122,32 @@ function unfavoriteCard(event) {
   }
 }
 
-// function favoriteIdea(idea) {
-//   idea.updateIdea();
-//   console.log(idea);
-//   //to access updateIdea method in class use dot/bracket notation on allSavedIdeas array to access specific instance to call the method on.
-// 
-// }
+function deleteCard(event) {
+  card = event.target.closest('section');
+  remove = event.target.closest('.delete');
+  for(var i = 0; i < allSavedIdeas.length; i++) {
+    if(card.id === `${allSavedIdeas[i].id}`) {
+      allSavedIdeas.splice(i, 1);
+      retrieveFromStorage();
+      allSavedIdeas.splice(i, 1);
+      localStorage.setItem("saved-ideas", JSON.stringify(allSavedIdeas));
+    }
+  }
+  card.classList.add('hidden');
+}
 
+function searchBarSearch () {
+  var typedInput = searchInput.value;
+  typedInput = typedInput.toLowerCase();
+  var ideaTitles = document.getElementsByClassName('card-title');
+  for (i = 0; i < ideaTitles.length; i++) {
+    if (!ideaTitles[i].innerHTML.toLowerCase().includes(typedInput)) {
+        ideaTitles[i].parentElement.parentElement.style.display = "none";
+    }
+    else {
+        ideaTitles[i].parentElement.parentElement.style.display = "list-item";
+    }
+  }
+}
 
-
-
-// ideaCardGrid.addEventListener("click", deleteIdea);
-// //Annie's idea:
-// function deleteIdea(event) {
-//   card = event.target.closest('section');
-//   for (var i = 0; i < allSavedIdeas.length; i++) {
-//     if(card.id === `${allSavedIdeas[i].id}`) {
-//       allSavedIdeas.splice(i, 1);
-//     }
-//   }
-//   //then needs to update html to remove card from view
-//   //and remove the card from localStorage
-// }
-//need to set delete button to the id of the class
-
-// function deleteIdea(event) {
-//     if (event.target.classList.contains('delete-button')) {
-//     event.target.parentElement.parentElement.remove();
-//    }
-//   removeHtml(event);
-//   // removeLocalStorage();
-// }
-//
-// function removeHtml(event) {
-//   for (var i = 0; i < allSavedIdeas.length; i++) {
-//     if(event.target.parentElement.parentElement.parentElement.id === `${allSavedIdeas[i].id}`) {
-//       allSavedIdeas.splice(i, 1);
-//     }
-//   }
-// };
-//might want to bind when we create the card to the unique id
-
-// removeLocalStorage() {
-//
-// }
+//only searches through titles, needs to also search through body text
