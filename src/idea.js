@@ -1,6 +1,6 @@
 class Idea {
-  constructor(title, body, star) {
-  this.id = Date.now();
+  constructor(title, body, id) {
+  this.id = id || Date.now();
   this.title = title;
   this.body = body;
   this.star = false;
@@ -15,7 +15,6 @@ class Idea {
     for (var i = 0; i < savedIdeas.length; i++){
       if (savedIdeas[i].id === this.id) {
         savedIdeas.splice(i, 1);
-        console.log('bloop')
       }
     }
     localStorage.setItem("saved-ideas", JSON.stringify(savedIdeas))
@@ -23,6 +22,6 @@ class Idea {
 
   updateIdea() {
     this.star = !this.star;
-    this.star ? this.src = "images/star-active.svg" : this.src = "images/star.svg"
+    // this.star ? this.src = "images/star-active.svg" : this.src = "images/star.svg"
   }
 }

@@ -27,10 +27,10 @@ window.addEventListener("load", function(){
 ideaCardGrid.addEventListener("click", manipulateCard);
 searchButton.addEventListener('click', searchBarSearch);
 searchInput.addEventListener('keyup', searchBarSearch);
-showStarredIdeasButton.addEventListener('click', showStarredIdeas);
+// showStarredIdeasButton.addEventListener('click', showStarredIdeas);
 
 
-function saveIdea(title, body) {
+function saveIdea() {
   event.preventDefault(event);
   disableSaveButton();
   var title = titleInput.value;
@@ -44,12 +44,15 @@ function saveIdea(title, body) {
 
 function createNewCard() {
   retrieveFromStorage();
+
   ideaCardGrid.innerHTML = "";
   for (var i = 0; i < allSavedIdeas.length; i++) {
+    var starImage = allSavedIdeas[i].star ? this.src = "images/star-active.svg" : this.src = "images/star.svg"
+    var starClass = allSavedIdeas[i].star ? "remove" : "";
     ideaCardGrid.innerHTML += `<section class="idea-card" id="${allSavedIdeas[i].id}">
           <header class="card-top">
             <button class="favorite-button">
-              <img src="images/star.svg" alt="Star button icon" class="star-inactive star">
+              <img src="${starImage}" alt="Star button icon" class="star ${starClass}">
             </button>
             <button class="delete-button"><img src="images/delete.svg" alt="Delete button icon" class="delete"></button>
           </header>
@@ -63,8 +66,9 @@ function createNewCard() {
             <label class="comment-word">Comment</label>
           </footer>
         </section>`
+        }
   }
-}
+
 
 function retrieveFromStorage() {
   allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"));
@@ -83,9 +87,8 @@ function disableSaveButton(event) {
   }
 }
 
-
 function manipulateCard(event) {
-  if(event.target.closest('.star-inactive') || event.target.closest('.star-active')) {
+  if(event.target.closest('.star')) {
     favoriteCard(event);
   } else if(event.target.closest('.delete')) {
     deleteCard(event);
@@ -94,31 +97,45 @@ function manipulateCard(event) {
 
 function favoriteCard(event) {
   card = event.target.closest('section');
-  image = event.target.closest('.star-inactive');
-  if (image === null) {
+  image = event.target.closest('.star');
+  if (image === null || event.target.classList.contains('remove')) {
     unfavoriteCard(event)
     return
   }
+  changeStar(event)
+  updateStar(card);
+}
+
+function changeStar(event) {
   for(var i = 0; i < allSavedIdeas.length; i++) {
     if(card.id === `${allSavedIdeas[i].id}`) {
       allFavoriteIdeas.push(`${allSavedIdeas[i]}`);
       image.src = "images/star-active.svg"
     }
-    image.classList.remove("star-inactive");
-    image.classList.add("star-active");
+    image.classList.toggle("remove")
   }
 }
 
 function unfavoriteCard(event) {
   card = event.target.closest('section');
-  image = event.target.closest('.star-active');
+  image = event.target.closest('.star');
+  allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"))
   for(var i = 0; i < allSavedIdeas.length; i++) {
     if(card.id === `${allSavedIdeas[i].id}`) {
       allFavoriteIdeas.splice(i, 1);
       image.src = "images/star.svg"
     }
-    image.classList.add("star-inactive");
-    image.classList.remove("star-active");
+  }
+  updateStar(card);
+}
+
+function updateStar(card) {
+  var allSavedFromStorage = JSON.parse(localStorage.getItem("saved-ideas"));
+  for(var i = 0; i < allSavedFromStorage.length; i++) {
+    if(card.id === `${allSavedFromStorage[i].id}`) {
+      allSavedFromStorage[i].star = !allSavedFromStorage[i].star;
+    }
+  localStorage.setItem("saved-ideas", JSON.stringify(allSavedFromStorage));
   }
 }
 
@@ -139,15 +156,51 @@ function deleteCard(event) {
 function searchBarSearch () {
   var typedInput = searchInput.value;
   typedInput = typedInput.toLowerCase();
-  var ideaTitles = document.getElementsByClassName('card-title');
-  for (i = 0; i < ideaTitles.length; i++) {
-    if (!ideaTitles[i].innerHTML.toLowerCase().includes(typedInput)) {
-        ideaTitles[i].parentElement.parentElement.style.display = "none";
+  var ideaCardText = document.getElementsByClassName('idea-card');
+  for (i = 0; i < ideaCardText.length; i++) {
+    if (!ideaCardText[i].innerHTML.toLowerCase().includes(typedInput)) {
+        ideaCardText[i].style.display = "none";
     }
     else {
-        ideaTitles[i].parentElement.parentElement.style.display = "list-item";
+        ideaCardText[i].style.display = "list-item";
     }
   }
 }
 
-//only searches through titles, needs to also search through body text
+//probably doesn't work, test second starred ideas first
+// function showStarredIdeas() {
+//   // card = event.target.closest('section');
+//   for(var i = 0; i < allSavedIdeas.length; i++) {
+//     var ideaTitles = document.getElementsByClassName('card-title');
+//     card = ideaTitles[i].parentElement.parentElement;
+//     console.log(card);
+//     if(card.star === false) {
+//       card.style.display = "none";
+//     } else {
+//       card.style.display = "list-item";
+//     }
+//   }
+// }
+
+// // idea 2 that most likely works!!
+// function showStarredIdeas() {
+//   // card = event.target.closest('section');
+//   changeStarredIdeasButtonText()
+//   card = document.getElementsByClassName('idea-card');
+//   for(var i = 0; i < allSavedIdeas.length; i++) {
+//   // var starActive = document.getElementsByClassName('star-active');
+//     if(card.star === false) {
+//       card.style.display = "none";
+//     } else {
+//       card.style.display = "list-item";
+//     }
+//   }
+// }
+//
+// function changeStarredIdeasButtonText() {
+//   if (showStarredIdeasButton.innerHTML === 'Show Starred Ideas') {
+//     showStarredIdeasButton.innerHTML = 'Show All Ideas';
+//   } else {
+//     showStarredIdeasButton.innerHTML = 'Show Starred Ideas';
+//   }
+// }
