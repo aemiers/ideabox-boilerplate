@@ -103,7 +103,10 @@ h2 {
 }
 
 .save-button:disabled {
-  background-color: #E4E6E7;
+  background-color: #D3D3D3;
+  color: #929292;
+  cursor: not-allowed !important;
+  pointer-events: none;
 }
 
 .search-button {
@@ -181,7 +184,8 @@ h2 {
 }
 
 .star-inactive,
-.star-active {
+.star-active,
+.star {
   height: 25px;
   margin: 7px, 0, 3px, 2px;
 }
