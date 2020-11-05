@@ -28,7 +28,6 @@ searchButton.addEventListener('click', searchBarSearch);
 searchInput.addEventListener('keyup', searchBarSearch);
 showStarredIdeasButton.addEventListener('click', showStarredIdeas);
 
-
 function saveIdea() {
   event.preventDefault(event);
   disableSaveButton();
@@ -67,7 +66,6 @@ function createNewCard() {
         </section>`
   }
 }
-
 
 function retrieveFromStorage() {
   allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"));
@@ -127,9 +125,9 @@ function unfavoriteCard(event) {
       image.src = "images/star.svg"
     }
   }
-updateStar(card);
-image.classList.remove("star-active");
-image.classList.add("star-inactive");
+  updateStar(card);
+  image.classList.remove("star-active");
+  image.classList.add("star-inactive");
 }
 
 function updateStar(card) {
