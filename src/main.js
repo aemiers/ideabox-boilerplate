@@ -46,7 +46,7 @@ function createNewCard() {
   ideaCardGrid.innerHTML = "";
   for (var i = 0; i < allSavedIdeas.length; i++) {
     var starImage = allSavedIdeas[i].star ? this.src = "images/star-active.svg" : this.src = "images/star.svg"
-    var starClass = allSavedIdeas[i].star ? "remove" : "";
+    var starClass = allSavedIdeas[i].star ? "star-active" : "star-inactive";
     ideaCardGrid.innerHTML += `
         <section class="idea-card" id="${allSavedIdeas[i].id}">
           <header class="card-top">
@@ -73,6 +73,11 @@ function retrieveFromStorage() {
   allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"));
 }
 
+function sendToStorage() {
+  localStorage.setItem("saved-ideas", JSON.stringify(allSavedIdeas));
+
+}
+
 function clearInputFields() {
   titleInput.value = "";
   bodyInput.value = "";
@@ -95,58 +100,55 @@ function manipulateCard(event) {
 }
 
 function favoriteCard(event) {
-  card = event.target.closest('section');
-  image = event.target.closest('.star');
-  if (image === null || event.target.classList.contains('remove')) {
+  var card = event.target.closest('section');
+  var image = event.target.closest('.star');
+  if (image === null || event.target.classList.contains('star-active')) {
     unfavoriteCard(event)
     return
   }
-  changeStar(event)
-  updateStar(card);
-}
-
-function changeStar(event) {
   for (var i = 0; i < allSavedIdeas.length; i++) {
     if (card.id === `${allSavedIdeas[i].id}`) {
       allFavoriteIdeas.push(`${allSavedIdeas[i]}`);
       image.src = "images/star-active.svg"
     }
-    image.classList.toggle("remove")
+    updateStar(card);
+    image.classList.remove("star-inactive");
+    image.classList.add("star-active");
   }
 }
 
 function unfavoriteCard(event) {
-  card = event.target.closest('section');
-  image = event.target.closest('.star');
-  allSavedIdeas = JSON.parse(localStorage.getItem("saved-ideas"))
+  var card = event.target.closest('section');
+  var image = event.target.closest('.star');
+  retrieveFromStorage();
   for (var i = 0; i < allSavedIdeas.length; i++) {
     if (card.id === `${allSavedIdeas[i].id}`) {
       allFavoriteIdeas.splice(i, 1);
       image.src = "images/star.svg"
     }
   }
-  updateStar(card);
+updateStar(card);
+image.classList.remove("star-active");
+image.classList.add("star-inactive");
 }
 
 function updateStar(card) {
-  var allSavedFromStorage = JSON.parse(localStorage.getItem("saved-ideas"));
-  for (var i = 0; i < allSavedFromStorage.length; i++) {
-    if (card.id === `${allSavedFromStorage[i].id}`) {
-      allSavedFromStorage[i].star = !allSavedFromStorage[i].star;
+  for (var i = 0; i < allSavedIdeas.length; i++) {
+    if (card.id === `${allSavedIdeas[i].id}`) {
+      allSavedIdeas[i].star = !allSavedIdeas[i].star;
     }
-  localStorage.setItem("saved-ideas", JSON.stringify(allSavedFromStorage));
+    sendToStorage();
   }
 }
 
 function deleteCard(event) {
-  card = event.target.closest('section');
-  remove = event.target.closest('.delete');
+  var card = event.target.closest('section');
+  var remove = event.target.closest('.delete');
   for (var i = 0; i < allSavedIdeas.length; i++) {
     if (card.id === `${allSavedIdeas[i].id}`) {
       allSavedIdeas.splice(i, 1);
       retrieveFromStorage();
-      allSavedIdeas.splice(i, 1);
-      localStorage.setItem("saved-ideas", JSON.stringify(allSavedIdeas));
+      sendToStorage();
     }
   }
   card.classList.add('hidden');
@@ -184,5 +186,7 @@ function filterIdeas() {
 function changeStarredIdeasButtonText() {
   if (showStarredIdeasButton.innerHTML === 'Show Starred Ideas') {
     showStarredIdeasButton.innerHTML = 'Show All Ideas';
+  } else {
+    showStarredIdeasButton.innerHTML = 'Show Starred Ideas';
   }
 }

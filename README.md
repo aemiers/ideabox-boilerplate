@@ -9,28 +9,16 @@ IdeaBox is your be-all, end-all, catch-all for all those thoughts you have that 
 ## So How Do You Use It, You Ask?
 The beauty of IdeaBox is in it's simplicity. Just navigate to the landing page, enter the title of your idea and the idea itself in the input boxes. (Need a spark of confidence? Checkout the awesome placeholder text cheering you on!) Click the button to save it and VIOLA! your idea appears in a handy-dandy box pimped out with virtual accessories to help you get the most out of your experience.
 
-                        GIF GOES HERE!!!
-
       * Want to let it know it's a fav? Click the star and watch it change from white to red to let you know it sees you showed love.
-
-                        GIF GOES HERE!!!
-
+      
       * Slay one like it's your birthday? Click the "X" and watch it be gone quicker than Tickle Me Elmo in 1996.
 
-                        GIF GOES HERE!!!
-
       * Got ideas for days? The 3x3 grid with convenient scroll feature means you can stay organized and orderly even if all your thoughts aren't.
-
-                        GIF GOES HERE!!!
-
 
 ## We Know You Want The Deets:
 IdeaBox was brought to life using JavaScript, HTML and CSS.   
 
 When IdeaBox was merely an idea and we self taught each other local storage as a team, we did the best we could by deploying local storage within our DOM (oops). We didn't realize what we'd done until other pieces of our code were *just not working quite right anymore*. This left us dead in the water because we found we were spending more time fixing what used to work than making additional progress. Ultimately, we learned that this was due to the fact that instead of using the three shell methods of saveToStorage(), deleteFromStorage() and updateIdea() on the Idea class provided in the Architecture. Our team went back to the drawing board, learned from our support network and DRYed up several of our functions, utilizing SRP as best we could. Once that was complete, we added the necessary methods on our Idea class and finally local storage worked.
-
-DELETE Function
-STAR FUNCTION
 
 ## We Gotta Pop A Bottle For:
 * John Adams
