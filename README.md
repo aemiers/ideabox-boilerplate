@@ -1,288 +1,56 @@
-# Ideabox Group Project
+# IdeaBox: A LockBox Online For Your Mind
+#### Brought to you by Annie Miers, Kristen Bair and Jahara Clark
 
-Every developer has more ideas than time. As David Allen likes to say "the human brain is for creating ideas, not remembering them." In this project, we'll be building an application that records and archives our ideas (good and bad alike).
+## Got An Idea? Of Course You Do?
+Between kids, bills, work, school, home and maybe a few social interactions, we all live very busy lives. Often there are thoughts racing through our head that we never quite get to; it's always "one day, I'll build that super cool invention" or "as soon as XYZ happens, I'll sit down and write that chart topping song". Then next thing we know, weeks, months and sometimes even years have gone by. Welcome to IdeaBox. We're here to help.
 
-Throughout the project, one of our focuses will be on providing a fluid and responsive client-side interface. To this end, we'll rely on JavaScript to implement snappy filtering in the browser, and `localStorage` to persist our wonderful ideas between sessions.
+IdeaBox is your be-all, end-all, catch-all for all those thoughts you have that you simply can't afford to lose. Need a reminder to pay that bill next week? IdeaBox is for you. Got a plan for a patent you don't want to forget? Got that covered? Have a secret you want to get off your chest but can't tell a soul? IdeaBox won't let you down.
 
-## Learning Goals
+## So How Do You Use It, You Ask?
+The beauty of IdeaBox is in it's simplicity. Just navigate to the landing page, enter the title of your idea and the idea itself in the input boxes. (Need a spark of confidence? Checkout the awesome placeholder text cheering you on!) Click the button to save it and VIOLA! your idea appears in a handy-dandy box pimped out with virtual accessories to help you get the most out of your experience.
 
-* Gain an understanding of how to write clean HTML and CSS to match a provided comp
-* Understand how to implement client-side data persistence using `localStorage`
-* Understand what it looks like to have a separate data model (using a class) and DOM model
-* Incorporate & iterate over arrays in order to filter what is being displayed
-* Craft code with clean style, using small functions that show trends toward DRYness and SRP
+      * Want to let it know it's a fav? Click the star and watch it change from white to red to let you know it sees you showed love.
+      
+      * Slay one like it's your birthday? Click the "X" and watch it be gone quicker than Tickle Me Elmo in 1996.
 
-## Day One Deliverables
+      * Got ideas for days? The 3x3 grid with convenient scroll feature means you can stay organized and orderly even if all your thoughts aren't.
 
-- Complete a [DTR](https://github.com/turingschool/career-development-curriculum/blob/master/module_one/dtr_guidelines_memo.md).
-- One person should fork [the boilerplate
-  repository](https://github.com/turingschool-examples/ideabox-boilerplate). Add all team members and your Project Manager as collaborators.
-- Deploy your application to GitHub Pages.
-- In a Slack DM to your assigned instructor, drop the repo link, DTR and GitHub pages link.
+## We Know You Want The Deets:
+IdeaBox was brought to life using JavaScript, HTML and CSS.   
 
-## Progression
+When IdeaBox was merely an idea and we self taught each other local storage as a team, we did the best we could by deploying local storage within our DOM (oops). We didn't realize what we'd done until other pieces of our code were *just not working quite right anymore*. This left us dead in the water because we found we were spending more time fixing what used to work than making additional progress. Ultimately, we learned that this was due to the fact that instead of using the three shell methods of saveToStorage(), deleteFromStorage() and updateIdea() on the Idea class provided in the Architecture. Our team went back to the drawing board, learned from our support network and DRYed up several of our functions, utilizing SRP as best we could. Once that was complete, we added the necessary methods on our Idea class and finally local storage worked.
 
-### Iteration 0 - Desktop Layout
+## We Gotta Pop A Bottle For:
+* John Adams
+  He's amazing at what he does! The fact that we were able to take him any problem from "this piece of our CSS doesn't do what we want it to do" to "why is that key not returning the value we were expecting" was invaluable. Snaps to Turing for having the foresight to understand that students in a remote environment were going to need a bit of extra support and making him available.
 
-Plan to write the HTML and CSS so that your application matches this comp. Based on what you are building, you can anticipate that the Idea "cards" will not always be there on page load, but for now, they should.
+* Demaceo Howard
+  It's one thing to be a rock. It's something else to be a whole boulder. Demaceo swooped in and help us build a "dummy playground" to test ideas and concepts in a sandbox fashion without having to worry about destroying our working code. This made it easier to make mistakes and learn the logic with no pressure. Way to be an example; we got a lot to live up to.
 
-Use the same text on your cards that is used in the spec so you can ensure your spacing/sizing is accurate.
+* Taylor Johnson
+  Just when we thought we'd really gotten in the water over our heads, Taylor swooped in and showed us that all we needed to do was stand up. He's a big part of us writing less-WET code and refactoring so our functions ran optimally. The hour he spent with us really got us back on the right path.
 
-![Desktop Layout](https://frontend.turing.io/projects/module-1/assets/ideabox-group/desktop.jpg)
+* Jeff Kersting
+  Jeff is not your average student. One minute, he's following along in the lesson with the rest of us and then next! he's sharing some in depth logic he was tinkering with on the side that's helping us recall things from local storage and re-instantiating classes. That sharing helped us refine our process in order to delete cards without losing the rest on page refresh. Way to be a part of the team!
 
-You will need the `svg` files for the star, delete, and menu icons. [Here's the link to download the `svg` icons.](https://drive.google.com/drive/folders/18xpWplI0tpXIK1omBZeq04LEx2OMzzMK?usp=sharing)
+* Joel Lacey
+  Who knew that JSON strips Classes of their methods? Not us! Who knew that our code didn't work because all of a sudden, the Idea class was suddenly, inexplicably missing it's methods? Definitely not us! Joel came to our rescue in the best way, helping us with insider knowledge about JSON and Local Storage that really took our project to the next level.
 
-![Colors](https://frontend.turing.io/projects/module-1/assets/ideabox-group/colors.jpg)
-![Colors](https://frontend.turing.io/projects/module-1/assets/ideabox-group/icons.jpg)
+* Trisha Langlois
+  When we needed to understand non-native DOM element manipulation and event delegation, Trisha is where we ran! She reassured us that we were on the right track, that our instincts were worthy being followed and that we were closer than we knew. Oh, how we needed that!
 
-### Iteration 1 and beyond
+* Annie Wolff
+  Parents and children aren't just for humans. Our elements needed to be properly targeted and Annie helped reset and recalibrate. She's why many of our click functions happen the way they do. Need to click something? BAM! It works. Don't want to click the thing you didn't actually mean to click? She cleared that up, too.
 
-We strongly recommend that you complete Iteration 0 before moving on to the next iterations!
+## Where Do We Go From Here
+* Comments and Bonus Material
+  Wanna add even more details? Got a link to reference? Need to take a picture of that receipt to keep track of the materials you purchased to 'get 'er done'? Wrap 'em up and put a bow on 'em! That's what comments are for.
 
-### Architecture
+* IdeaBox in your pocket
+  Ideas don't just happen at home, so why be limited to you desktop? A mobile app will mean you can access, add to and complete your ideas no matter where you are.
 
-For this project, we'll be increasingly thinking about the "data model" and "DOM model" as separate entities. We'll be using:
+* Progress Tracker
+  Rome wasn't built in a day and we're willing to bet that your Christmas cards won't be finished that quickly either. A progress tracker will let you update your idea cards every step of the way, so you can get that instant-gratification of seeing tasks well on their way.
 
-- JSON and `localStorage` to persist data on page reload.
-- JavaScript to manage client-side interactions.
-
-Your entire application will consist of one HTML page or template. You will have two JavaScript files, for now:
-
-1. An `idea.js` file that contains an `Idea` class.
-  * `Idea` methods must include, but are not limited to:
-    1. `constructor`
-    2. `saveToStorage` (should only have one job which is to save the instance to storage)
-    3. `deleteFromStorage`
-    4. `updateIdea` (should be able to update the idea's title, body, or starred state)
-2. A `main.js` file that contains all DOM related JavaScript.
-
-**Note** The `idea.js` file  must be the first script in your HTML so that your `main.js` file has access to your `Idea` class.
-
-### Data Model
-
-* An idea has an _id_, _title_, _body_, and _star_.
-  * The _id_ should be a unique identifier. (Note: generating a random number does _not_ guarantee it will be unique)
-  * _title_ and _body_ are strings.
-  * _star_ is a boolean.
-
-Each idea should be created as an object instance of the `Idea` class. Once an idea object is created, all that data can be used to update the DOM. That object should also be added to a `list` of all the ideas your application currently has. This should probably be a global variable in your `main.js`.
-
-### Iteration 2 - Adding Ideas
-
-As a user,
-- When I click "Save",
-- If I entered information in both the "Title" and "Body" input fields,
-- I should see a new idea card with the provided title and body appear in the idea list
-
-As a user,
-- When I click "Save",
-- If I entered information in both the "Title" and "Body" input fields,
-- I should see the "Title" and "Body" input fields clear out
-
-As a user,
-- When I look at the "Save" button,
-- When either the "Title" or "Body" inputs are empty,
-- I should notice that the "Save" button is disabled because it is a lighter color and the cursor is not a pointer when I hover over it
-
-As a user,
-- When I click "Save",
-- And a new card is successfully created,
-- I should _not_ see the page reload
-
-### Iteration 3 - Favoriting & Deleting Ideas
-
-As a user,
-- When I click the "Delete" button on an idea card,
-- The card should be permanently removed from my view
-
-As a user,
-- When I click the "Star" button on an idea card,
-- When the button was an outline of a star (not favorited),
-- The button should now be a filled in star (favorited)
-
-As a user,
-- When I click the "Star" button on an idea card,
-- When the button was a filled in star (favorited),
-- The button should now be an outline of a star (not favorited)
-
-As a user,
-- When I delete or favorite any card,
-- I should _not_ see the page reload
-
-### Iteration 4 - Local Storage & Filtering
-
-As a user,
-- When I create one idea successfully, then refresh the page,
-- The idea card is still in the idea list
-
-As a user,
-- When I create two cards successfully, delete one, then refresh the page,
-- One idea card is still in the idea list (the one I did not delete)
-
-As a user,
-- When I favorite an idea card, then refresh the page,
-- That idea card is still in the "favorite" state with the filled in star icon
-
-As a user,
-- When I click "Show Starred Ideas"
-- I see only card that are favorited
-
-As a user,
-- When I click "Show Starred Ideas"
-- I see the text on that button has changed to "Show All Ideas"
-
-As a user,
-- When I click "Show Starred Ideas"
-- Then I click what is now "Show All Ideas"
-- I see all ideas, favorited or not
-
-As a user,
-- When a type a letter or phrase into the search bar
-- I now only see the cards that include the letter/phrase in the title or body
-
-As a user,
-- When I backspace and delete something from the search bar, so that it's empty
-- I see all cards since no search criteria is being provided
-
-### Iteration 5 - Commenting on Ideas
-
-### Architecture
-
-In addition to your `idea.js` and `main.js`, you now need to have a `comment.js` file.
-
-This file should hold a class, `Comment`. `Comment` methods must include, but are not limited to:
-1. `constructor`
-2. `saveToStorage` (should only have one job which is to save the instance to storage)
-3. `deleteFromStorage`
-
-### Data Model
-
-* An idea now also has a _comments_ property
-  * The _id_ should be a unique identifier. (Note: generating a random number does _not_ guarantee it will be unique)
-  * _title_ and _body_ are strings.
-  * _star_ is a boolean.
-  * _comments_ is an array.
-
-* A comment should have _content_ - a string that holds the content of a comment. 
-
-
-As a user,
-- When I click the "Add" icon on an idea card,
-- A form to add a comment appears
-
-As a user,
-- When I open the comment form on a card, type something in, and click "Add Comment",
-- The text typed in is now a comment attached to this card
-
-As a user,
-- When I open the comment form on a card, type something in, and click "Add Comment",
-- The "Comment" input field clears out and is ready to accept another comment
-
-As a user,
-- When I open the comment form on am idea card,
-- When the "Comment" input field is empty,
-- I should notice that the "Add Comment" button is disabled because it is a lighter color and the cursor is not a pointer when I hover over it
-
-As a user,
-- When I comment on an idea card, then refresh the page,
-- That comment is still on the idea card
-
-
-## Rubric
-
-This rubric should serve as a guide for students as they progress through the project, as well as to self-evaluate. Instructors will use it to evaluate the project at its final due date/time, and provide detailed feedback so students know what areas to focus on in future projects.
-
-Scores land in a range between 1 and 4. Below is a breakdown of what those numbers represent.
-
-* **4 (exceptional)** - went beyond set learning goals; did self-teaching to go above and beyond in this area
-* **3 (proficient)** - exactly on track! you're where you need to be in this area! great work!
-* **2 (trailing)** - a little behind where we want to see you right now; in a good place to build familiarity/competency in this area; study in this area to level up and grow
-* **1 (dragging)** - significantly behind where we want to see you; major growth needs to be shown in this area; set up a pairing session with an instructor as soon as possible
-
-To earn a given score, an application must meet the requirements listed in that score explanation and all scores lower.
-
-
-### Professionalism
-* **4:**
-  - Team uses a PR template
-  - Team habitually conducts thorough code reviews in the GitHub GUI to document the progress of the application
-  - Team has sought out code reviews from one or more mentors
-  - README is well formatted and descriptive with screenshots or gifs of the application in action.
-* **3:**
-  - Commits are atomic and frequent, effectively documenting the evolution/progression of the application
-  - Commit messages are consistent, descriptive, and concise
-  - Team uses PRs to screen/verify code before adding it to the main branch
-  - There is no more than a 10% disparity in project contributions between teammates
-  - README is well formatted and gives good context about the project, including links to both contributors’ GitHub profiles, and to the deployed GitHub Pages site
-* **2:**
-  - Commits are large and do not effectively communicate the progression of the application
-  - Team uses PRs but do not review code before merging into the main branch
-  - All teammates can speak to the purpose and functionality of any/every line of code
-  - There is a 20% disparity in project contributions between teammates
-  - README is brief and does not provide context for the project
-* **1:**
-  - Teammates do not understand the purpose and functionality of every line of code
-  - Some commits are pushed directly to the main branch
-  - PRs are used inconsistently
-  - There is a 50% disparity in project contributions between teammates
-  - There is no README, or README is insufficient
-
-### Comp Recreation
-
-* **4:** 
-  - Additional elements and animations have been added that match the visuals established in the comps.
-* **3:** 
-  - Application implements all major comp details accurately and correctly on desktop (colors, fonts, icons, spacing, alignment, etc).
-  - If additional elements were added, they generally match the visuals established in the comps, but may be slightly awkward.
-  - Careful attention was given to the little details like spacing, alignment, and hover states.
-* **2:** 
-  - Application implements most major comp details accurately and correctly (colors, fonts, icons, spacing, alignment, etc.).
-* **1:**
-  - Application has a significant mismatch when compared to the provided comp. 
-
-### HTML && CSS - Style and Implementation
-* **4:**
-  - Application adds to the requirements of the Proficient category by using [BEM](http://getbem.com/), [SMACCS](http://smacss.com/), or another set of naming conventions for classes
-  - Application fully implements HTML that is accessible for individuals with visual disabilities.
-* **3:**
-  - Application utilizes good naming conventions for HTML classes and IDs 
-  - CSS is DRY, utilizing existing classes/rules to cut down on repetitive styles
-* **2:**
-  - Application adds to the above with HTML that incorporates semantic HTML elements whenever possible
-  - Application has a simple, clean HTML structure
-  - Application utilizes organizational conventions for the whole CSS stylesheet
-* **1:**
-  - Crafts CSS according to the [Turing CSS style guide](https://github.com/turingschool-examples/css)
-  - Crafts markup according to the [Turing HTML style guide](https://github.com/turingschool-examples/html)
-
-### JavaScript - Style and Implementation
-
-* **4:**
-  * All loops are refactored into the proper array prototype iteration methods
-  * Uses logical operators instead of if/else statements where applicable
-  * When 'Filtering and Searching by Text' and 'Viewing Starred Ideas', ideas that do not need to be shown on the DOM should be completely removed from the DOM, instead of only being hidden from view
-* **3:**
-  * Application uses the Data Model exclusively to track changes to the ideas,
-    and display of ideas happens after the Data Model has been updated
-  * DRY and SRP practices are demonstrated in codebase and students can speak to implementation decisions
-  * All functions are less than 10 lines
-  * There are no nested if/else statements
-  * There are no global variables aside from query selectors and an array for your idea
-  * Uses event delegation correctly on dynamic elements for deleting, and starring an idea
-* **2:** Application correctly implements data model for the `Idea` class including all required methods
-* **1:** Crafts JS according to the [Turing JS Style Guide](https://github.com/turingschool-examples/javascript/tree/master/es5)
-
-### Functional Expectations
-Functionality is the least important piece of the rubric. It’s included because it is another benchmark to gauge proficiency (for example, we can’t grade your JS if there isn’t enough of it written!). However, you should not pursue functionality at the expense of code quality or the learning/growth of all team members.
-
-This means, we DO NOT want to see:
-
-Code that completes iterations but is sloppy
-One or both team members do not understand every single line of code
-One or both team members skips the problem solving process (pseudocoding, talking out the problem, articulating, planning) in the pursuit of completing functionality
-A score cannot be earned if all developers are not intimately familiar with the concepts and understanding driving every line of code.
-
-* **4:** Application meets all of the expectations from Iteration 4 and most functionality from Iteration 5.
-* **3:** Application meets all of the expectations from Iteration 4.
-* **2:** Application meets all of the expectations of Iteration 3.
-* **1:** Application meets all of the expectations of Iteration 2.
+* Calendar Syncing and Integration
+  We know you *said* you wanted to call grandma at 5pm, but what doesn't get scheduled doesn't get done. Let IdeaBox send you reminders or set an alarm to ensure your ideas become realities.

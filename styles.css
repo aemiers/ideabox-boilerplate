@@ -81,9 +81,6 @@ button:hover {
   transform: scale(1.03);
 }
 
-h1, h2 {
-}
-
 h1 {
   color: #E9E9F3;
   font-size: 20px;
@@ -144,9 +141,6 @@ h2 {
 }
 
 /* Idea cards */
-
-
-
 .idea-cards-section {
   grid-column: col 2 / span 3;
   grid-row: row 2;
